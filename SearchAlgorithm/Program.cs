@@ -40,6 +40,69 @@ namespace SearchAlgorithm
                 arr[i] = Int32.Parse(s1);
             }
         }
+        public void BinarySearch()
+        {
+            char ch;
+            do
+            {
+                //accept the number to be searched
+                Console.Write("\nEnter element want you search : \n");
+                int item = Convert.ToInt32(Console.ReadLine());
 
+                //apply binary search
+                int lowerbound = 0;
+                int upperbound = n - 1;
+
+                //obtain the index of the middle elements
+                int mid = (lowerbound + upperbound) / 2;
+                int ctr = 1;
+
+                //loop to search for the element in the array
+                while ((item != arr[mid]) && (lowerbound <= upperbound))
+                {
+                    if (item > arr[mid])
+                        lowerbound = mid + 1;
+                    else
+                        upperbound = mid - 1;
+                    mid = (lowerbound + upperbound) / 2;
+                    ctr++;
+                }
+                if (item == arr[mid])
+                    Console.WriteLine("\n" + item.ToString() + "found at position " + (mid + 1).ToString());
+                else
+                    Console.WriteLine("\n" + item.ToString() + "not found in the array \n");
+                Console.WriteLine("\n Number of comparison : " + ctr);
+
+                Console.Write("\n Continue search (y/n):");
+                ch = char.Parse(Console.ReadLine());
+            } while ((ch == 'y') || (ch == 'Y'));
+        }
+        public void LinearSearch()
+        {
+            char ch;
+            //search for number of comparison
+            int ctr;
+            do
+            {
+                //accept the number to be searched
+                Console.Write("\nEnter the element you want to search: ");
+                int item = Convert.ToInt32((Console.ReadLine()));
+
+                ctr = 0;
+                for (i = 0; i < n; i++)
+                {
+                    ctr++;
+                    if (arr[i] == item)
+                    {
+                        Console.WriteLine("\n" + item.ToString() + "found st position " + (i + 1).ToString());
+                        break;
+                    }
+                }
+                if (i == n)
+                    Console.WriteLine("\n" + item.ToString() + " not found in the array");
+                Console.WriteLine("\nNumber of comparison : " + ctr);
+                Console.Write("\nContinue search (y\n):");
+                ch = char.Parse(Console.ReadLine());
+            } while ((ch == 'y') || (ch == 'Y'));
     }
 }
